@@ -30,7 +30,7 @@ And import:
 ```import TeGraphics from "path/app.js";```
 
 ### Example
-See ``example/index.html``
+See [demo](http://darkridder.github.io/js-te-graphics/example/).
 
 ### Scripts
 
