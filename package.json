@@ -1,0 +1,54 @@
+{
+  "name": "js-te-graphics",
+  "version": "0.1.0",
+  "description": "JS Telegram Graphics",
+  "main": "dist/te-graphics.bundle.min.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack -p --mode production",
+    "dev": "./node_modules/.bin/webpack-dev-server -p --env=development --mode development",
+    "lint": "eslint --ext .js .",
+    "lintfix": "eslint --fix --ext .js .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {},
+  "keywords": [
+    "js",
+    "html",
+    "graphics"
+  ],
+  "author": {
+    "name": "DarkRiDDeR",
+    "url": "http://progcode.ru"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/plugin-transform-parameters": "^7.2.0",
+    "autoprefixer": "^9.4.10",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.12.1",
+    "eslint-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "svg-url-loader": "^2.3.2",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "copy-webpack-plugin": "^5.0.1",
+    "css-loader": "^2.1.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-loader": "^0.5.5",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "object-copy": "^1.0.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.29.0"
+  }
+}

@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+// vars
+$bgColor: #FFF;
+$sliderHeight: 60px;
+$checkMarkDameter: 20px;
+$btnBg: #999;
+$borderColor: #999;
+$borderOpacity: 0.35;
+$slBlockBg: #DEEBEF;
+$slBlockOpacity: 0.4;
+
+html {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    background-color: $bgColor;
+}
+
+.tg {
+    position: relative;
+    margin-top: 20px;
+    color: #43484b;
+    animation: tg-render-animation 0.001s;
+
+    canvas {
+        user-select: none;
+    }
+}
+
+.tg-ui-slider {
+    position: relative;
+    height: $sliderHeight;
+
+
+    &__l-bl, &__l-btn, &__range, &__r-btn, &__r-bl {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        bottom: 0;
+        display: block;
+    }
+
+    &__l-btn, &__r-btn {
+        z-index: 3;
+        width: 5px;
+        background-color: #999;
+        opacity: $borderOpacity;
+        cursor: pointer;
+    }
+
+    &__range {
+        border-top: solid 2px $borderColor;
+        border-bottom: solid 1px $borderColor;
+        opacity: $borderOpacity;
+        cursor: pointer;
+    }
+
+    &__l-bl, &__r-bl {
+        background-color: $slBlockBg;
+        opacity: $slBlockOpacity;
+    }
+
+    &__l-bl {
+        width: 60%;
+        left: 0;
+    }
+    &__l-btn {
+        left: 60%;
+    }
+    &__range {
+        left: 60%;
+        width: 20%;
+    }
+    &__r-btn {
+        right: 20%;
+    }
+    &__r-bl {
+        width: 20%;
+        right: 0;
+    }
+}
+
+.tg-ui__checkboxes {
+    display: flex;
+    margin-top: 20px;
+
+    label {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 15px;
+        padding: 8px;
+        padding-right: 13px;
+        border: solid #e6ecf0 1px;
+        border-radius: 90px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    input {
+        display: none;
+    }
+}
+
+.tg-ui__check-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $checkMarkDameter;
+    width: $checkMarkDameter;
+    border-radius: 90px;
+    background: url('./check-mark.svg') no-repeat center center;
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.tg-ui__check-mark::before {
+    content: "";
+    display: block;
+    height: $checkMarkDameter - 4px;
+    width: $checkMarkDameter - 4px;
+    background: $bgColor;
+    border-radius: 90px;
+    transition: height .15s, width .15s;
+}
+
+.tg-ui__checkboxes input:checked + .tg-ui__check-mark::before {
+    height: 0;
+    width: 0;
+}
+
+@keyframes tg-render-animation {
+    0% {
+        opacity: 0.99;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#switch-mode {
+    display: inline-block;
+    color: #36a8f1;
+    margin-top: 25px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    cursor: pointer;
+}
+
+
+// night-mode
+body.night-mode {
+    background-color: #242f3e;
+    color: #fff;
+}
+.night-mode {
+    .tg-ui__checkboxes label {
+        color: #FFF;
+        border-color: #3b4a5a;
+    }
+    .tg-ui__check-mark::before {
+        background: #242f3e;
+    }
+    .tg-ui-slider {
+        &__l-bl, &__r-bl {
+            background-color: #17202c;
+        }
+    }
+}

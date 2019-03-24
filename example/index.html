@@ -1,0 +1,165 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSTeGraphics</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+<link href="../dist/te-graphics.bundle.min.css" rel="stylesheet"><script type="text/javascript" src="../dist/te-graphics.bundle.min.js"></script></head>
+
+<body>
+<h1>JSTeGraphics</h1>
+
+<div class="tg" id="tg0">
+    <canvas class="tg__canvas" width="800" height="400"></canvas>
+    <div class="tg-ui" style="width: 800px">
+        <div class="tg-ui-slider">
+            <canvas class="tg-ui-slider__canvas" width="800" height="60"></canvas>
+            <div class="tg-ui-slider__l-bl"></div>
+            <div class="tg-ui-slider__l-btn"></div>
+            <div class="tg-ui-slider__range"></div>
+            <div class="tg-ui-slider__r-btn"></div>
+            <div class="tg-ui-slider__r-bl"></div>
+        </div>
+        <div class="tg-ui__checkboxes"></div>
+    </div>
+</div>
+<div class="tg" id="tg1">
+    <canvas class="tg__canvas" width="800" height="400"></canvas>
+    <div class="tg-ui" style="width: 800px">
+        <div class="tg-ui-slider">
+            <canvas class="tg-ui-slider__canvas" width="800" height="60"></canvas>
+            <div class="tg-ui-slider__l-bl"></div>
+            <div class="tg-ui-slider__l-btn"></div>
+            <div class="tg-ui-slider__range"></div>
+            <div class="tg-ui-slider__r-btn"></div>
+            <div class="tg-ui-slider__r-bl"></div>
+        </div>
+        <div class="tg-ui__checkboxes"></div>
+    </div>
+</div>
+<div class="tg" id="tg2">
+    <canvas class="tg__canvas" width="800" height="400"></canvas>
+    <div class="tg-ui" style="width: 800px">
+        <div class="tg-ui-slider">
+            <canvas class="tg-ui-slider__canvas" width="800" height="60"></canvas>
+            <div class="tg-ui-slider__l-bl"></div>
+            <div class="tg-ui-slider__l-btn"></div>
+            <div class="tg-ui-slider__range"></div>
+            <div class="tg-ui-slider__r-btn"></div>
+            <div class="tg-ui-slider__r-bl"></div>
+        </div>
+        <div class="tg-ui__checkboxes"></div>
+    </div>
+</div>
+<div class="tg" id="tg3">
+    <canvas class="tg__canvas" width="800" height="400"></canvas>
+    <div class="tg-ui" style="width: 800px">
+        <div class="tg-ui-slider">
+            <canvas class="tg-ui-slider__canvas" width="800" height="60"></canvas>
+            <div class="tg-ui-slider__l-bl"></div>
+            <div class="tg-ui-slider__l-btn"></div>
+            <div class="tg-ui-slider__range"></div>
+            <div class="tg-ui-slider__r-btn"></div>
+            <div class="tg-ui-slider__r-bl"></div>
+        </div>
+        <div class="tg-ui__checkboxes"></div>
+    </div>
+</div>
+<div class="tg" id="tg4">
+    <canvas class="tg__canvas" width="800" height="400"></canvas>
+    <div class="tg-ui" style="width: 800px">
+        <div class="tg-ui-slider">
+            <canvas class="tg-ui-slider__canvas" width="800" height="60"></canvas>
+            <div class="tg-ui-slider__l-bl"></div>
+            <div class="tg-ui-slider__l-btn"></div>
+            <div class="tg-ui-slider__range"></div>
+            <div class="tg-ui-slider__r-btn"></div>
+            <div class="tg-ui-slider__r-bl"></div>
+        </div>
+        <div class="tg-ui__checkboxes"></div>
+        <a id="switch-mode" data-mode="0">
+            Switch to Night Mode
+        </a>
+    </div>
+</div>
+
+
+<script>
+    //load JSON
+    function load(url, callback) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                callback(this);
+            }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+    }
+
+    load("chart_data.json", function (e) {
+        var jsonData = JSON.parse(e.responseText);
+
+        var themes = {
+            day: {
+                bgColor: "#FFF",
+                fontColor: "#96a2aa",
+                cutLineColor: "#f2f4f5",
+                hintBgColor: "#FFF",
+                hintBorderColor: "#f2f4f5",
+                hintHeaderColor: "#000"
+            },
+            night: {
+                bgColor: "#242f3e",
+                fontColor: "#546778",
+                cutLineColor: "#3b4a5a",
+                hintBgColor: "#253241",
+                hintBorderColor: "#202a37",
+                hintHeaderColor: "#ffffff"
+            }
+        };
+
+        var tg0 = new TeGraphics(document.getElementById("tg0"), jsonData[0], {}, 50.5, 65.5);
+        var tg1 = new TeGraphics(document.getElementById("tg1"), jsonData[1], {}, 50.5, 65.5);
+        var tg2 = new TeGraphics(document.getElementById("tg2"), jsonData[2], {}, 50.5, 65.5);
+        var tg3 = new TeGraphics(document.getElementById("tg3"), jsonData[3], {}, 50.5, 65.5);
+        var tg4 = new TeGraphics(document.getElementById("tg4"), jsonData[4], {}, 50.5, 150.9);
+        document.getElementById("switch-mode").addEventListener("click", function (e) {
+            e.preventDefault();
+            var body = document.getElementsByTagName("body")[0];
+            if (this.getAttribute("data-mode") == "0") {
+                tg0.options = themes.night;
+                tg1.options = themes.night;
+                tg2.options = themes.night;
+                tg3.options = themes.night;
+                tg4.options = themes.night;
+                body.classList.add("night-mode");
+                this.innerText = "Switch to Day Mode";
+                this.setAttribute("data-mode", "1");
+            } else {
+                tg0.options = themes.day;
+                tg1.options = themes.day;
+                tg2.options = themes.day;
+                tg3.options = themes.day;
+                tg4.options = themes.day;
+                body.classList.remove("night-mode");
+                this.innerText = "Switch to Night Mode";
+                this.setAttribute("data-mode", "0");
+            }
+            tg0.obDraw.drawAll();
+            tg0.obSlDraw.drawOnlyCharts();
+            tg1.obDraw.drawAll();
+            tg1.obSlDraw.drawOnlyCharts();
+            tg2.obDraw.drawAll();
+            tg2.obSlDraw.drawOnlyCharts();
+            tg3.obDraw.drawAll();
+            tg3.obSlDraw.drawOnlyCharts();
+            tg4.obDraw.drawAll();
+            tg4.obSlDraw.drawOnlyCharts();
+        });
+    });
+
+</script>
+</body>
+</html>
