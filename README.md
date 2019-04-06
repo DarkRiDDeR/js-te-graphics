@@ -1,4 +1,4 @@
-# JSTeGraphics (JS Telegram Graphics)
+# JSTeGraphics
 
 ## Setup
 
